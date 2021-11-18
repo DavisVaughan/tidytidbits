@@ -570,6 +570,7 @@ count_at <- function(.tbl,
                percentage_label_decimal_places = percentage_label_decimal_places,
                add_grouping = add_grouping,
                na.rm = na.rm) %>%
+      mutate(!!var_name := as.character(.data[[var_name]])) %>%
       replace_na(na_replacement_list)
   }) %>%
     mutate(!!long_label_column_names[[1]] := map_chr(.vars, quo_name)[first_which_non_na_at(., !!!.vars)],
